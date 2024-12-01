@@ -1,0 +1,83 @@
+﻿<Window x:Class="UI_Layer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI_Layer" 
+        xmlns:local1="clr-namespace:MvvM.ViewModel;assembly=MvvM"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        mc:Ignorable="d"
+        Title="RunStatistic" Height="550" Width="800" Loaded="Window_Loaded" Icon="/leongif.gif">
+    
+    <Window.Resources>
+        <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="Red"/>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <!-- Top Menu -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Import CSV" Click="MenuItem_Click"/>
+            <MenuItem Header="Settings" Click="Settings_Click"/>
+            <MenuItem Header="Save" Click="Save_Click"/>
+        </Menu>
+        
+        <!-- Content Panel -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/> <!-- For top buttons -->
+                <RowDefinition Height="*"/>    <!-- For the data grid -->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/> <!-- Data grid area -->
+                <ColumnDefinition Width="1*"/> <!-- Form area (right side) -->
+            </Grid.ColumnDefinitions>
+            
+            <!-- Data Grid: It spans the two rows -->
+            <DataGrid x:Name="dataGrid" 
+                      Grid.Row="1" Grid.Column="0"
+                      ItemsSource="{Binding PersonenFull}" 
+                      SelectedItem="{Binding SelectedPersonFull}" 
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      Margin="10"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Person.Id}" Width="Auto"/>
+                    <DataGridTextColumn Header="Vorname" Binding="{Binding Person.Vorname}" Width="*"/>
+                    <DataGridTextColumn Header="Nachname" Binding="{Binding Person.Nachname}" Width="*"/>
+                    <DataGridTextColumn Header="Klasse" Binding="{Binding Klasse.Name}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            <!-- Right-side Panel with Form Controls -->
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10" VerticalAlignment="Top">
+                <Button x:Name="btnBarcodeGen" Content="Barcode Generieren" Click="btnBarcodeGen_Click" 
+                        HorizontalAlignment="Stretch" Margin="0,0,0,10" Background="#FFF7CD06"/>
+                <Button x:Name="btnStatisticGen" Content="Statistik Generieren" Click="btnStatisticGen_Click" 
+                        HorizontalAlignment="Stretch" Margin="0,0,0,10" Background="#FFCFFF02"/>
+                <Button x:Name="btnDetails" Content="Details" Click="btnDetails_Click" 
+                        HorizontalAlignment="Stretch" Margin="0,0,0,10" Background="#FF65FB01"/>
+                <Button x:Name="btnBarSession" Click="testBtn_Click" Background="#FF05F92A">Barcode Session</Button>
+                <Label Content="Name Filter"/>
+                <TextBox x:Name="tbName" Text="" TextChanged="tbName_TextChanged" HorizontalAlignment="Stretch"/>
+                
+                <Label Content="Schule"/>
+                <ComboBox x:Name="cmbSchule" HorizontalAlignment="Stretch">
+                    <ComboBoxItem Content="Alle Schulen"/>
+                </ComboBox>
+
+                <Label Content="Klasse"/>
+                <ComboBox x:Name="cmbKlasse" HorizontalAlignment="Stretch">
+                    <ComboBoxItem Content="Alle Klassen"/>
+                </ComboBox>
+
+                <Label Content="ID"/>
+                <TextBox x:Name="tbId" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Stretch"/>
+                <Image gif:ImageBehavior.AnimatedSource="leongif.gif"></Image>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>

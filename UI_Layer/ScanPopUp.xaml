@@ -1,0 +1,33 @@
+﻿<Window x:Class="UI_Layer.ScanPopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI_Layer"
+        mc:Ignorable="d"
+        WindowStartupLocation="Manual"
+        Title="Window1" Height="183" Width="326"  WindowStyle="None" Background="Transparent" AllowsTransparency="True" Loaded="Window_Loaded">
+    <Grid x:Name="DataGoesHere">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="183" VerticalAlignment="Center" Width="104">
+
+            <!--<Border.Background>
+                <ImageBrush ImageSource="C:\Users\sandork\Downloads\7qalrjf53th51.png"></ImageBrush> 
+
+            <Border.Background>
+                <ImageBrush ImageSource="C:\Users\sandork\Downloads\MicrosoftTeams-image.png"></ImageBrush>
+                    >>>>>>> 9fef628363e7c4a235fa3323a29dba9dc42d3b82
+            </Border.Background>
+            -->
+        </Border>
+        <Border x:Name="border" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="110" Margin="104,0,0,0" VerticalAlignment="Top" Width="222">
+            <Border.Background>
+                <ImageBrush x:Name="barcodePic" Stretch="None"/>
+            </Border.Background>
+            <Canvas>
+            <Label Content="{Binding Vorname}" />
+            <Label Content="{Binding Nachname}" HorizontalAlignment="Left" Canvas.Left="10" VerticalAlignment="Center"/>
+            </Canvas>
+        </Border>
+
+    </Grid>
+</Window>
